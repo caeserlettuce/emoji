@@ -42,12 +42,19 @@
         </div>
         
         <button class="social-button share" onclick="share()">share</button>
-        <button class="social-button save">save as SVG</button>
-        <button class="social-button save">save as PNG</button>
+        <button class="social-button save" onclick="toggle_export()">export</button>
       
       
       </center>
 
+
+      <div class="export-menu" id="export-menu" style="display: none;">
+        <h2>export</h2>
+        <h2 class="export-close" onclick="toggle_export()">x</h2>
+        <button class="social-button share" onclick="share()">share</button>
+        <button class="social-button save" onclick="export_svg()">export as SVG</button>
+        <button class="social-button save" onclick="export_png()">export as PNG</button>
+      </div>
 
     </main>
     <footer>
@@ -58,6 +65,7 @@
 
 
     <style id="arizona— mucho mango"></style>
+    <script src="FileSaver.js"></script>
     <script src="main.js"></script>
 
 

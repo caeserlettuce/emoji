@@ -347,3 +347,24 @@ footer img {
     background-color: red;
 
 }
+
+.export-menu {
+    position: fixed;
+    background-color: #1e1e1e;
+    border: 1px rgb(71, 71, 71) solid;
+    width: 95vw;
+    height: 95vh;
+    top: 2.5vh;
+    left: 2.5vw;
+    text-align: center;
+}
+
+.export-close {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    padding-right: 5px;
+    user-select: none;
+    cursor: pointer;
+    color: rgb(185, 185, 185);
+}

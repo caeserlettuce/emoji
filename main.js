@@ -2965,6 +2965,7 @@ function render_layers() {
     
     document.getElementById("layer-list").innerHTML = add_html;
     document.getElementById("display-svg").innerHTML = add_svg;
+    return add_svg
 }
 
 function share() {
@@ -3002,4 +3003,64 @@ if (window_width <= window_height) {
     }`;
 } else {
     document.getElementById("arizona— mucho mango").innerHTML = ``;
+}
+
+var export_menu = false;
+
+function toggle_export() {
+    export_menu = !export_menu;
+    if (export_menu == true) {
+        document.getElementById("export-menu").style.display = "";
+    } else {
+        document.getElementById("export-menu").style.display = "none";
+    }
+}
+
+
+function export_svg() {
+    var blob = new Blob([`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" notes="created with https://dapug.lol/emoji">\n${render_layers()}\n</svg>`],
+        { type: "text/plain;charset=utf-8" });
+    saveAs(blob, "exported.svg");
+}
+
+
+function getSvgUrl(svg) {
+    return  URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+}
+function svgUrlToPng(svgUrl, callback) {
+    var svgImage = document.createElement('img');
+    svgImage.id = "img";
+    // imgPreview.style.position = 'absolute';
+    // imgPreview.style.top = '-9999px';
+    document.body.appendChild(svgImage);
+    svgImage.onload = function () {
+        const canvas = document.createElement('canvas');
+        canvas.width = svgImage.clientWidth;
+        canvas.height = svgImage.clientHeight;
+        const canvasCtx = canvas.getContext('2d');
+        canvasCtx.drawImage(svgImage, 0, 0);
+        const imgData = canvas.toDataURL('image/png');
+        callback(imgData);
+        // document.body.removeChild(imgPreview);
+    };
+    svgImage.src = svgUrl;
+}
+function svgToPng(svg, callback) {
+    const url = getSvgUrl(svg);
+    svgUrlToPng(url, (imgData) => {
+        callback(imgData);
+        URL.revokeObjectURL(url);
+    });
+}
+
+
+function export_png() {
+    svgToPng(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" notes="created with https://dapug.lol/emoji">\n${render_layers()}\n</svg>`,(imgData)=>{
+        document.getElementById("img").remove();
+        var a = document.createElement("a"); //Create <a>
+        a.href = imgData; //Image Base64 Goes here
+        a.download = "exported.png"; //File name Here
+        a.click(); //Downloaded file
+        a.remove();
+    });
 }
