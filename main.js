@@ -1481,6 +1481,14 @@ var parts = [
         "xml": `<path fill="#CCD6DD" d="M35 17c0 9.389-13.223 19-17 19-3.778 0-17-9.611-17-19S8.611 0 18 0s17 7.611 17 17z" />`
     },
     {
+        "name": "alien head grey base chin",
+        "scheme": 0,
+        "colours": ["#CCD6DD"],
+        "x": 0,
+        "y": 0,
+        "xml": `<path fill="#CCD6DD" d="M 35 17 c 0 9.389 -13.223 19 -17 19 c -3.778 0 -17 -10 -17 -19 c 0 0 17 0 17 0 z" />`
+    },
+    {
         "name": "alien face eye",
         "scheme": 1,
         "colour": ["#292F33"],
@@ -1499,7 +1507,7 @@ var parts = [
     {
         "name": "space invader alien video game",
         "scheme": 0,
-        "colours": ["#553986"],
+        "colours": ["#553986"], 
         "x": 0,
         "y": 0,
         "xml": `<path fill="#553986" d="M26 31h4v4h-4zM6 31h4v4H6zm24-21h-2V8h-2V6h-3V2h-2v4h-6V2h-2v4h-3v2H8v2H6v7H2v2h4v7h4v5h5v-5h6v5h5v-5h4v-7h4v-2h-4v-7zM16 21h-4v-8h4v8zm4 0v-8h4v8h-4zM34 6h2v11h-2zM0 6h2v11H0z" />`
@@ -2923,7 +2931,7 @@ function render_layers() {
 
         add_html += `\n<div class="emojilayer">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="emojilayer-svg">
-        <g transform="translate(${parseFloat(part["x"]) + parseFloat(offset_x)},${parseFloat(part["y"]) + parseFloat(offset_y)}) rotate(${part["r"]}) scale(${part["sx"]}, ${part["sy"]})" transform-origin="center center" >${svg_xml}</g>
+        <g transform="translate(${parseFloat(part["x"]) + parseFloat(offset_x)},${parseFloat(part["y"]) + parseFloat(offset_y)}) rotate(${part["r"]}) scale(${part["sx"]}, ${part["sy"]}) translate(${parseFloat(offset_x)},${parseFloat(offset_y)})" transform-origin="center center" >${svg_xml}</g>
     </svg>
     <input type="number" placeholder="x transform" class="input-tm" id="lay_x_${i}" value="${part_x}" onchange="update_back()">
     <input type="number" placeholder="y transform" class="input-tm" id="lay_y_${i}" value="${part_y}" onchange="update_back()">
@@ -2951,9 +2959,8 @@ function render_layers() {
             part_syo = ( parseFloat(part_y) + parseFloat(offset_y) ) * 2;
         }
         
-        add_svg += `\n<g transform="translate(${parseFloat(part_x) + parseFloat(offset_x)},${parseFloat(part_y) + parseFloat(offset_y)}) rotate(${part["r"]}) scale(${part["sx"]}, ${part["sy"]}) translate(${part_sxo},${part_syo})" transform-origin="center center" >${svg_xml} </g>`;
 
-        // scale(${part["s"]}) rotate(${part["r"]}deg)
+        add_svg += `\n<g transform="translate(${parseFloat(part_x)},${parseFloat(part_y)}) rotate(${part["r"]}) scale(${part["sx"]}, ${part["sy"]}) translate(${parseFloat(offset_x)},${parseFloat(offset_y)}) " transform-origin="center center" >${svg_xml} </g>`;
     }
     
     document.getElementById("layer-list").innerHTML = add_html;
