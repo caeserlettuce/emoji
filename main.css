@@ -1,0 +1,349 @@
+/* fonts */
+@font-face {
+    font-family: lato-black;
+    src: url(../assets/Lato-Black.ttf);
+} @font-face {
+    font-family: lato-bold;
+    src: url(../assets/Lato-Bold.ttf);
+} @font-face {
+    font-family: lato-italy;
+    src: url(../assets/Lato-Italic.ttf);
+} @font-face {
+    font-family: lato-reg;
+    src: url(../assets/Lato-Regular.ttf);
+} @font-face {
+    font-family: lato-reg;
+    src: url(../assets/Lato-Regular.ttf);
+} @font-face {
+    font-family: akzidenz-black;
+    src: url(../assets/Akzidenz-grotesk-black.ttf);
+} @font-face {
+    font-family: akzidenz-bold;
+    src: url(../assets/Akzidenz-grotesk-bold.ttf);
+}
+
+/* basic element stuff*/
+
+body, header, main, footer, h1, h2, h3, h4, h5, h6, p {
+    font-family: lato-reg;
+    color: white;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    overflow: overlay;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+a, .link {
+    color: white;
+    text-decoration: none;
+    transition-duration: 250ms;
+    cursor: pointer;
+}
+
+a:hover, .link:hover {
+    color: #cacaca;
+}
+
+::selection {
+    background: #3a2edd97;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    position: absolute;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    /*background: #789feb;*/
+    display: none;
+}
+
+/*haha i stole this code from the dogecoin website*/
+
+.disable {
+    /* nft websites can't figure this out when it took me a quick google search */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+/* specifics*/
+
+body {
+    background-color: #161616;
+}
+
+main {
+    font-size: 1.45rem;
+}
+
+header {
+    transition-duration: 500ms;
+    position: fixed;
+    width: 100vw;
+    padding-bottom: 5px;
+    background-color: #161616;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.header-badge {
+    transition-duration: 500ms;
+    height: 2em;
+    margin: 5px;
+    margin-top: calc(50vh - 2em);
+    margin-bottom: 0px;
+}
+
+.header-text {
+    transition-duration: 500ms;
+    font-family: akzidenz-black;
+    margin-right: 5px;
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+}
+
+.bgimg {
+    height: 5rem;
+    position: fixed;
+    width: 100vw;
+    top: calc(50vh - 2.5rem)
+}
+
+.socials {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.social-button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 10px solid;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition-duration: 250ms;
+}
+
+.share {
+    border-color: #1c9aef;
+    background-color: #1c9aef;
+}
+
+.share:hover {
+    border-color: #47b4fc;
+    background-color: #47b4fc;
+}
+
+.save {
+    border-color: #1dbb55;
+    background-color: #1dbb55;
+}
+
+.save:hover {
+    border-color: #3cdd75;
+    background-color: #3cdd75;
+}
+
+.center {
+    width: 100vw;
+    text-align: center;
+}
+
+.tools-div {
+    display: flex;
+    width: 100vw;
+}
+
+.tool {
+    width: calc(100vw / 3);
+    height: calc(100vw / 3);
+    max-width: calc(100vh - 10rem);
+    max-height: calc(100vh - 10rem);
+    border: 1px solid rgb(71, 71, 71);
+}
+
+.display-svg {
+    border-right: 0px;
+    border-left: 0px;
+}
+.scroll-parts {
+    height: calc(100% - 4rem - 10px);
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem; 
+    align-content: flex-start;
+}
+
+.emojipart {
+    width: 3rem;
+    height: 3rem;
+    background-color: #3b3b3b;
+    border: #3b3b3b 7.5px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 250ms;
+}
+
+.emojipart-light {
+    width: 3rem;
+    height: 3rem;
+    background-color: #eeeeee;
+    border: #eeeeee 7.5px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 250ms;
+}
+
+
+
+.scroll-layers {
+    max-height: calc(100% - 2rem - 10px);
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    gap: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
+.emojilayer {
+    width: calc (100% - 10px);
+    /*min-height: 3rem;
+    max-height: 100%;*/
+    background-color: #3b3b3b;
+    border: #3b3b3b 7.5px solid;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.emojilayer-svg {
+    width: 2.7rem;
+}
+
+.input-tm {
+    color: white;
+    background-color: #1e1e1e;
+    border: none;
+    height: 1.5rem;
+    padding-left: 0.25rem;
+    width: 5.5rem;
+    cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.input-rot {
+    width: 3.4rem;
+}
+
+.input-scale {
+    width: 3.1rem;
+}
+
+.input-button {
+    width: 2rem;
+    background-color: #1e1e1e;
+    transition-duration: 250ms;
+    cursor: pointer;
+}
+
+.input-button:hover {
+    background-color: #2c2c2c;
+}
+
+
+footer {
+    background-color: #333333;
+    height: 4rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 0.3rem;
+    padding-left: 0.3rem;
+}
+
+footer img {
+    height: 3rem;
+}
+
+.search-tm {
+    color: white;
+    background-color: #1e1e1e;
+    border: none;
+    height: 1.5rem;
+    padding-left: 0.25rem;
+    max-width: 95%;
+    width: 95%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.advanced-options {
+    text-align: left;
+}
+
+.advanced-options p {
+    font-size: 1.15rem;
+    font-family: lato-bold;
+}
+
+
+.cpick {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    padding: none;
+    gap: 0px;
+    cursor: pointer;
+}
+.cpick::-webkit-color-swatch {
+    border-radius: 5px;
+    border: none;
+    padding: none;
+
+}
+.cpick::-moz-color-swatch {
+    border-radius: 5px;
+    border: none;
+    padding: none;
+
+}
+
+.cpick::-moz-color-swatch-wrapper {
+    border-radius: 5px;
+    border: none;
+    background-color: red;
+
+}
