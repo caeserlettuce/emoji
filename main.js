@@ -2743,6 +2743,24 @@ function render_parts() {
 
 render_parts();
 
+var loc_tm = `${location.href.slice(0, -1) }${location.pathname}`;
+
+var uhistory = [];
+var uindex = 0;
+
+function add_action() {
+    /*
+    if (uindex != 0) {
+        for (i in [...Array(uindex)]) {
+            console.log(`deleting ${i}`)
+            delete uhistory[i]
+        }
+    } else {
+        uhistory.unshift([...emolist]);
+    }
+    */
+}
+
 
 function add_layer(id) {
     emolist.push({
@@ -2756,6 +2774,7 @@ function add_layer(id) {
         "co": []
     });
     render_layers()
+    add_action()
 }
 
 function push_layer(layer, amount) {
@@ -2766,7 +2785,7 @@ function push_layer(layer, amount) {
     emolist.splice(layer - amount, 0, layer_json)
 
     render_layers();
-    
+    add_action()
 }
 
 function dupe_layer(layer) {
@@ -2775,6 +2794,7 @@ function dupe_layer(layer) {
     emolist.splice(layer + 1, 0, layer_json)
 
     render_layers();
+    add_action()
     
 }
 
@@ -2782,6 +2802,7 @@ function dupe_layer(layer) {
 function remove_layer(layer) {
     emolist.splice(layer, 1)
     render_layers()
+    add_action()
 }
 
 function update_back() {
@@ -2810,7 +2831,8 @@ function update_back() {
         }
     }
     render_layers();
-    
+    add_action()
+
 }
 
 function expand_layer(layer) {
@@ -2822,6 +2844,7 @@ function expand_layer(layer) {
         emolist[layer]["ex"] = false;
     }
     render_layers();
+    add_action()
 }
 
 
@@ -2969,14 +2992,18 @@ function render_layers() {
 }
 
 function share() {
-    navigator.clipboard.writeText(`https://dapug.lol/emoji?share=${btoa(JSON.stringify(emolist))}`); //stringifies and encodes JSON into base64
+    navigator.clipboard.writeText(`${loc_tm}?share=${btoa(JSON.stringify(emolist))}`); //stringifies and encodes JSON into base64
 }
 
 
 const queryString = window.location.search;
 const urlParameters = new URLSearchParams(queryString);
-
-input_share = JSON.parse(atob(urlParameters.get("share"))) // decodes base64 into JSON string again and parses it
+var input_share = ""
+try {
+    input_share = JSON.parse(atob(urlParameters.get("share"))) // decodes base64 into JSON string again and parses it
+} catch (err) {
+    console.log("woops")
+}
 
 if (input_share != undefined && input_share != null && input_share != "") {
     emolist = input_share
@@ -3063,4 +3090,37 @@ function export_png() {
         a.click(); //Downloaded file
         a.remove();
     });
+}
+
+
+var keylist = []
+
+window.addEventListener('keydown', (e) => {
+    var keycode = e.keyCode;
+    keylist[keycode] = true;    // object with all the keycodes of keys that are being pressed
+
+
+/*
+    if (keylist[17] == true && keylist[90] == true && ( keylist[16] == false || !keylist[16]) ) { // reload page (but fancy)
+        // undo
+        if (uindex + 1 <= uhistory.length) {
+            console.log("undo")
+            uindex += 1;
+        }
+
+    } else if (keylist[17] == true && keylist[16] == true && keylist[90] == true || keylist[17] == true && keylist[89] == true) {
+        // redo
+        console.log("redo")
+        
+    }
+    */
+
+})
+
+
+window.onkeyup = function kee(e) {
+
+    var keycode = e.keyCode;
+    keylist[keycode] = false;       // object with all the keycodes of keys that are being pressed
+
 }
